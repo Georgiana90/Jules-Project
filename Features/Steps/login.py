@@ -24,6 +24,11 @@ def step_impl(context):
     assert context.login_page.is_message_displayed() == 'The Banciu Household'
 
 
+@Given('I am on my account page')
+def step_impl(context):
+    context.login_page.get_current_url()
+    sleep(5)
+
 
 @When('I click my account options')
 def step_impl(context):
@@ -40,11 +45,6 @@ def step_impl(context):
 @Then('I see the login page')
 def step_impl(context):
     assert context.login_page.get_current_url() == 'https://jules.app/sign-in'
-
-
-@Given('I am on my account page')
-def step_impl(context):
-    context.login_page.get_current_url()
 
 
 @When('I input invalid email and valid password')

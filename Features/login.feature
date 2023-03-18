@@ -8,10 +8,10 @@ Feature: Jules Login
     Then I see my account
 
   Scenario: Logout Jules Account
-      Given I am on my account page
-      When I click my account options
-      And I select logout
-      Then I see the login page
+    Given I am on my account page
+    When I click my account options
+    And I select logout
+    Then I see the login page
 
   Scenario: Login with invalid email and valid password
     Given I am on the login page

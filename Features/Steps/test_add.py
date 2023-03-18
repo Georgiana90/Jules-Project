@@ -9,7 +9,6 @@ def step_impl(context):
     context.add_page.select_add()
 
 
-
 @When('I select the option to add person')
 def step_impl(context):
     context.add_page.click_add_person()
@@ -28,7 +27,6 @@ def step_impl(context):
 
 @Then('I see the confirmation message')
 def step_impl(context):
-
     assert context.add_page.confirm_add_message() == "John Doe was added successfully!"
     # context.add_page.click_finish()
 
@@ -37,6 +35,7 @@ def step_impl(context):
 def step_impl(context):
     context.add_page.input_first_name('1234')
     context.add_page.input_last_name('56789')
+
 
 @Then('I see the error message')
 def step_impl(context):

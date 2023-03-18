@@ -1,5 +1,3 @@
-from time import sleep
-
 from selenium.webdriver.common.by import By
 
 
@@ -13,7 +11,6 @@ class Login:
     USER_OPTIONS = (By.XPATH, '//*[@data-test-id="user-options-business-button"]')
     LOG_OUT = (By.XPATH, '//span[contains(text(),"Log Out")]')
     LOG_OUT_ACCEPT = (By.XPATH, '//button[@data-test-id="confirm-logout-button"]')
-
 
     def __init__(self, browser):
         self.driver = browser.driver
@@ -35,7 +32,6 @@ class Login:
         login_button = self.driver.find_element(*self.LOGIN_SELECTOR)
         login_button.click()
 
-
     def is_message_displayed(self):
         message_element = self.driver.find_element(*self.VERIFY_TEXT)
         return message_element.text
@@ -55,7 +51,6 @@ class Login:
     def log_out_accept(self):
         log_out_accept = self.driver.find_element(*self.LOG_OUT_ACCEPT)
         log_out_accept.click()
-
 
     def get_current_url(self):
         return self.driver.current_url
