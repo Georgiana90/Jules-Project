@@ -27,8 +27,8 @@ def step_impl(context):
 
 @Then('I see the confirmation message')
 def step_impl(context):
+    sleep(3)
     assert context.add_page.confirm_add_message() == "John Doe was added successfully!"
-    # context.add_page.click_finish()
 
 
 @When('I input numbers in firstname and lastname')
