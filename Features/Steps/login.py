@@ -19,12 +19,13 @@ def step_impl(context):
     context.login_page.click_login_button()
 
 
-@Then('I see my account')
+@Then('I see my Jules account')
 def step_impl(context):
-    assert context.login_page.is_message_displayed() == 'The Banciu Household'
+    sleep(2)
+    context.login_page.is_message_displayed()
 
 
-@Given('I am on my account page')
+@Given('I am on my Jules account page')
 def step_impl(context):
     context.login_page.get_current_url()
     sleep(5)
@@ -36,15 +37,15 @@ def step_impl(context):
     context.login_page.user_options()
 
 
-@When('I select logout')
+@When('I select logout option')
 def step_impl(context):
     context.login_page.log_out()
     context.login_page.log_out_accept()
 
 
-@Then('I see the login page')
+@Then('I return to the sign-in page')
 def step_impl(context):
-    assert context.login_page.get_current_url() == 'https://jules.app/sign-in'
+    context.login_page.check_login_url()
 
 
 @When('I input invalid email and valid password')
@@ -53,9 +54,10 @@ def step_impl(context):
     context.login_page.input_password('Test123test!')
 
 
-@Then('I am still on the sign-in page')
+@Then('I receive the error message')
 def step_impl(context):
-    assert context.login_page.get_current_url() == 'https://jules.app/sign-in'
+    sleep(3)
+    context.login_page.check_error_message()
 
 
 @When('I input valid email with invalid password')

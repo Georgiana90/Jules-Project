@@ -40,14 +40,16 @@ class AddItem:
         save_button = self.driver.find_element(*self.SAVE_SELECTOR)
         save_button.click()
 
-    def confirm_add_message(self):
-        confirm_message = self.driver.find_element(*self.CONFIRM_MESSAGE)
-        return confirm_message.text
+    def check_add_message(self):
+        confirm_message = self.driver.find_element(*self.CONFIRM_MESSAGE).text
+        expected_message = "John Doe was added successfully!"
+        assert confirm_message == expected_message
 
     def click_finish(self):
         click_finish_button = self.driver.find_element(*self.FINISH_SELECTOR)
         click_finish_button.click()
 
-    def invalid_field(self):
-        invalid_value = self.driver.find_element(*self.INVALID_VALUE)
-        return invalid_value.text
+    def check_invalid_field(self):
+        actual_error = self.driver.find_element(*self.INVALID_VALUE).text
+        expected_error = "invalid field value"
+        assert actual_error == expected_error

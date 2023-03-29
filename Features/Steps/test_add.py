@@ -28,7 +28,7 @@ def step_impl(context):
 @Then('I see the confirmation message')
 def step_impl(context):
     sleep(3)
-    assert context.add_page.confirm_add_message() == "John Doe was added successfully!"
+    context.add_page.check_add_message()
 
 
 @When('I input numbers in firstname and lastname')
@@ -39,4 +39,4 @@ def step_impl(context):
 
 @Then('I see the error message')
 def step_impl(context):
-    assert context.add_page.invalid_field() == "invalid field value"
+    context.add_page.check_invalid_field()

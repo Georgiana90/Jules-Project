@@ -27,9 +27,10 @@ class PeoplePage:
         click_search.click()
         click_search.send_keys(name)
 
-    def list_item(self):
-        item = self.driver.find_element(*self.LIST_ITEM_SELECTOR)
-        return item.text
+    def verify_user_from_list(self):
+        actual_list = self.driver.find_element(*self.LIST_ITEM_SELECTOR).text
+        expected_list = 'Maria Stefan'
+        assert actual_list == expected_list
 
     def select_option(self):
         select = self.driver.find_element(*self.SELECT_LIST)
@@ -43,9 +44,10 @@ class PeoplePage:
         click_delete = self.driver.find_element(*self.DELETE_ACCEPT)
         click_delete.click()
 
-    def confirm_deleted(self):
-        confirm_option = self.driver.find_element(*self.DELETE_CONFIRMATION)
-        return confirm_option.text
+    def verify_delete_message(self):
+        actual_text = self.driver.find_element(*self.DELETE_CONFIRMATION).text
+        expected_text = 'All selected persons have been deleted successfully.'
+        assert actual_text == expected_text
 
     def close_alert(self):
         delete_alert = self.driver.find_element(*self.CLOSE_DELETE_ALERT)

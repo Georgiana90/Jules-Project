@@ -11,6 +11,7 @@ class Login:
     USER_OPTIONS = (By.XPATH, '//*[@data-test-id="user-options-business-button"]')
     LOG_OUT = (By.XPATH, '//span[contains(text(),"Log Out")]')
     LOG_OUT_ACCEPT = (By.XPATH, '//button[@data-test-id="confirm-logout-button"]')
+    ERROR_MESSAGE = (By.XPATH, '//div[@data-test-id="signin-error"]')
 
     def __init__(self, browser):
         self.driver = browser.driver
@@ -33,8 +34,9 @@ class Login:
         login_button.click()
 
     def is_message_displayed(self):
-        message_element = self.driver.find_element(*self.VERIFY_TEXT)
-        return message_element.text
+        actual_account_message = self.driver.find_element(*self.VERIFY_TEXT).text
+        expected_account_message = 'The Banciu Household'
+        assert actual_account_message == expected_account_message, "You are not logged in Jules account"
 
     def pop_up(self):
         pop_up = self.driver.find_element(*self.COOKIES)
@@ -54,3 +56,15 @@ class Login:
 
     def get_current_url(self):
         return self.driver.current_url
+
+    def check_login_url(self):
+        if self.driver.current_url == 'https://jules.app/sign-in':
+            assert True
+        else:
+            assert False, 'The URL did not match'
+
+    def check_error_message(self):
+
+        actual_message = self.driver.find_element(*self.ERROR_MESSAGE).text
+        expected_message = 'Invalid email/password combination'
+        assert actual_message == expected_message

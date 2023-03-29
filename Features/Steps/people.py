@@ -15,13 +15,13 @@ def step_impl(context):
 
 
 @When('I type the firstname in search bar')
-def step_impl(contex):
-    contex.people_page.search_bar_input('Maria')
+def step_impl(context):
+    context.people_page.search_bar_input('Maria')
 
 
 @Then('I see the results of the people I have on my account')
-def step_impl(contex):
-    assert contex.people_page.list_item() == 'Maria Stefan'
+def step_impl(context):
+    context.people_page.verify_user_from_list()
 
 
 @Given('I am on people page')
@@ -48,5 +48,5 @@ def step_impl(context):
 
 @Then('I see the successfully delete confirmation')
 def step_impl(context):
-    assert context.people_page.confirm_deleted() == 'All selected persons have been deleted successfully.'
+    context.people_page.verify_delete_message()
     context.people_page.close_alert()
