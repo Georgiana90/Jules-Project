@@ -10,12 +10,9 @@ Testing 3 main functionalities of the Jules web page: Login, People Search, Add 
 
 ### Prerequisites
 
-- Install Google Chrome
-- Install Pycharm Community Edition : https://www.jetbrains.com/pycharm/download
-- Install Python : https://www.python.org/downloads/
+We need a python library that implements the syntax Gherkin: [behave]
 
-- We need a python library that implements the syntax Gherkin: [behave]
-- We also need selenium, webdriver-manager and a library for formatting reports [behave-html-formatter]
+We also need selenium, webdriver-manager and a library for formatting reports [behave-html-formatter]
 
 ## In terminal(venv):
 
