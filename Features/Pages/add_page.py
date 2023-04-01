@@ -11,6 +11,8 @@ class AddItem:
     CONFIRM_MESSAGE = (By.XPATH, '//span[text()=" was added successfully!"]')
     FINISH_SELECTOR = (By.XPATH, '//button[@data-test-id="add-person-wizard-finish-button"]')
     INVALID_VALUE = (By.XPATH, '//p[contains(text(),"invalid field value")]')
+    ADD_ITEM_SELECTOR = (By.XPATH,'//div[@data-test-id="item-wizard-tile"]')
+    ADD_TO_RECORDS = (By.XPATH,'//div[@data-test-id="internal-item-tile"]')
 
     def __init__(self, browser):
         self.driver = browser.driver
@@ -45,11 +47,10 @@ class AddItem:
         expected_message = "John Doe was added successfully!"
         assert confirm_message == expected_message
 
-    def click_finish(self):
-        click_finish_button = self.driver.find_element(*self.FINISH_SELECTOR)
-        click_finish_button.click()
+    def click_finish_button(self):
+        click_button = self.driver.find_element(*self.FINISH_SELECTOR)
+        click_button.click()
 
-    def check_invalid_field(self):
+    def check_invalid_field(self,error_message):
         actual_error = self.driver.find_element(*self.INVALID_VALUE).text
-        expected_error = "invalid field value"
-        assert actual_error == expected_error
+        assert actual_error == error_message

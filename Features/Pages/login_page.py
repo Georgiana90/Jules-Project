@@ -19,15 +19,15 @@ class Login:
     def go_to(self, page):
         self.driver.get(f'{self.BASE_URL}{page}')
 
-    def input_email(self, email_input):
+    def input_email(self, username):
         email = self.driver.find_element(*self.EMAIL_SELECTOR)
         email.click()
-        email.send_keys(email_input)
+        email.send_keys(username)
 
-    def input_password(self, password_input):
-        password = self.driver.find_element(*self.PASSWORD_SELECTOR)
-        password.click()
-        password.send_keys(password_input)
+    def input_password(self, password):
+        input_password = self.driver.find_element(*self.PASSWORD_SELECTOR)
+        input_password.click()
+        input_password.send_keys(password)
 
     def click_login_button(self):
         login_button = self.driver.find_element(*self.LOGIN_SELECTOR)
@@ -35,7 +35,7 @@ class Login:
 
     def is_message_displayed(self):
         actual_account_message = self.driver.find_element(*self.VERIFY_TEXT).text
-        expected_account_message = 'The Banciu Household'
+        expected_account_message = 'The Georgiana Household'
         assert actual_account_message == expected_account_message, "You are not logged in Jules account"
 
     def pop_up(self):
@@ -63,8 +63,7 @@ class Login:
         else:
             assert False, 'The URL did not match'
 
-    def check_error_message(self):
+    def check_error_message(self, error_msg):
 
         actual_message = self.driver.find_element(*self.ERROR_MESSAGE).text
-        expected_message = 'Invalid email/password combination'
-        assert actual_message == expected_message
+        assert actual_message == error_msg

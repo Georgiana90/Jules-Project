@@ -1,32 +1,26 @@
 Feature: Jules Login
 
-
-  Scenario: Login with valid credentials
+  Background:
     Given I am on the login page
+
+  @JulesLogin @invalidLogin
+
+  Scenario Outline: Verify I cannot login in my Jules account with invalid credentials
+    When I insert "<username>" and "<password>"
+    And I click the login button
+    Then I cannot login to my account and see the "<error_msg>"
+
+    Examples:
+      | username                      | password     | error_msg                          |
+      | georgianabanciu@gmail.com     | Test123test! | Invalid email/password combination |
+      | georgianabanciu1511@gmail.com | TestTest     | Invalid email/password combination |
+      | georgianabanciu@gmail.com     | TestTest     | Invalid email/password combination |
+
+  @successfulLogin
+
+  Scenario: Verify I can login in my Jules account with valid credentials
+
     When I input a valid email and a valid password
     And I click the login button
     Then I see my Jules account
 
-  Scenario: Logout Jules Account
-    Given I am on my Jules account page
-    When I click my account options
-    And I select logout option
-    Then I return to the sign-in page
-
-  Scenario: Login with invalid email and valid password
-    Given I am on the login page
-    When I input invalid email and valid password
-    And I click the login button
-    Then I receive the error message
-
-  Scenario: Login with valid email and invalid password
-    Given I am on the login page
-    When I input valid email with invalid password
-    And I click the login button
-    Then I receive the error message
-
-  Scenario: Login with invalid credentials
-    Given I am on the login page
-    When I input invalid credentials
-    And I click the login button
-    Then I receive the error message
